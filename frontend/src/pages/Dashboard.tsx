@@ -28,7 +28,7 @@ function Dashboard() {
                 </div>
 
                 <div className='flex gap-4 flex-wrap'>
-                    {contents.map(({ title, type, link }) => <Card type={type} link={link} title={title} />
+                    {contents.map(({ title, type, link, _id }) => <Card type={type} link={link} title={title} contentId={_id} refresh={refresh} />
                     )}
 
                 </div>

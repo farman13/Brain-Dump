@@ -126,7 +126,7 @@ app.get('/api/v1/content', middleware_1.Auth, (req, res) => __awaiter(void 0, vo
 }));
 app.delete('/api/v1/content', middleware_1.Auth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const contentId = req.body.contentId;
-    yield db_1.contentModel.deleteMany({
+    yield db_1.contentModel.deleteOne({
         contentId,
         //@ts-ignore
         userId: req.userId

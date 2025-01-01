@@ -1,12 +1,26 @@
-import { ShareIcon } from "../../icons/ShareIcon"
+import { DeleteIcon } from "../../icons/DeleteIcon"
+import { TwitterIcon } from "../../icons/TwitterIcon"
+import { YoutubeIcon } from "../../icons/YoutubeIcon"
+import { useDeleteContentbyId } from "../../hooks/useDeleteContentbyId"
+//import { ShareIcon } from "../../icons/ShareIcon"
 
 interface cardProps {
     title: string,
     link: string
     type: "twitter" | "youtube",
+    contentId: any
+    refresh: () => void
 }
 
-export const Card = ({ title, link, type }: cardProps) => {
+export const Card = ({ title, link, type, contentId, refresh }: cardProps) => {
+
+    const { deleteContent } = useDeleteContentbyId();
+
+    const DeleteContent = () => {
+        deleteContent(contentId);
+        refresh();
+    }
+
     return (
         <div>
             {/*card container */}
@@ -16,17 +30,19 @@ export const Card = ({ title, link, type }: cardProps) => {
                     {/*left section */}
                     <div className="flex items-center text-md">
                         <div className="text-gray-500 pr-2">
-                            <ShareIcon />
+                            {type === "youtube" && <YoutubeIcon />}
+                            {type === "twitter" && <TwitterIcon />}
                         </div>
                         {title}
                     </div>
                     {/*right section */}
                     <div className="flex items-center">
-                        <div className="pr-2 text-gray-500">
-                            <a href={link}><ShareIcon /></a>
+                        {/*  <div className="pr-2 text-gray-500">
+                            <a href={link} target="_blank"><ShareIcon /></a>
                         </div>
-                        <div className="text-gray-500">
-                            <ShareIcon />
+                        */}
+                        <div className="text-gray-500 cursor-pointer" onClick={DeleteContent}>
+                            <DeleteIcon />
                         </div>
                     </div>
                 </div>
