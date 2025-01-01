@@ -3,7 +3,7 @@ import { Button } from "../components/ui/Button"
 import { Input } from "../components/ui/Input"
 import { BACKEND_URL } from "../config";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
 
@@ -24,12 +24,30 @@ export const Signup = () => {
         alert("You are signed up!")
         navigate('/signin');
     }
-    return <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-        <div className="bg-white rounded-xl border min-w-48 p-8">
-            <Input placeholder="username" reference={usernameRef} />
-            <Input placeholder="password" reference={passwordRef} />
-            <div className="flex justify-center pt-4">
+    return <div className="h-screen w-screen bg-purple-50 flex justify-center items-center">
+        <div className="bg-white rounded-xl border min-w-96 max-w-lg min-h-96 p-12">
+            <div className="text-center pb-6">
+                <h1 className="text-4xl font-bold ">Welcome to <span className="text-purple-800">BrainDump</span></h1>
+                <p className="text-gray-700 text-lg mt-2">
+                    Sign up and never lose track of your ideas again!
+                </p>
+            </div>
+            <div className="font-normal">
+                Username
+                <Input placeholder="e.g. xyz12" reference={usernameRef} />
+                Password
+                <Input placeholder="A12@.." reference={passwordRef} />
+            </div>
+            <div className="flex justify-center pt-6">
                 <Button variant="primary" text="Signup" size="sm" fullwidth={true} loading={false} onClick={signup} />
+            </div>
+            <div className="pt-4 text-lg">
+                Existing user ?
+                <Link to='/signin'>
+                    <span className="pl-2 text-blue-700 hover:underline ">
+                        Signin
+                    </span>
+                </Link>
             </div>
         </div>
 

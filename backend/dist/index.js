@@ -124,13 +124,24 @@ app.get('/api/v1/content', middleware_1.Auth, (req, res) => __awaiter(void 0, vo
         userContent
     });
 }));
-app.delete('/api/v1/content', middleware_1.Auth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const contentId = req.body.contentId;
-    yield db_1.contentModel.deleteOne({
-        contentId,
+app.delete('/api/v1/content/:contentId', middleware_1.Auth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { contentId } = req.params;
+    console.log(contentId);
+    const Id = new mongoose_1.default.Types.ObjectId(contentId);
+    console.log(Id);
+    if (!Id) {
+        res.status(400).json({ message: "Invalid content ID or user ID" });
+        return;
+    }
+    const result = yield db_1.contentModel.deleteOne({
+        _id: Id,
         //@ts-ignore
         userId: req.userId
     });
+    if (result.deletedCount === 0) {
+        res.status(404).json({ message: "Content not found" });
+        return;
+    }
     res.json({
         message: "Content deleted"
     });

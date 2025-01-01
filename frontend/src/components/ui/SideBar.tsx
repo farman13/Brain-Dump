@@ -12,7 +12,7 @@ export const SideBar = () => {
                     <LogoIcon />
                 </div>
             </Link>
-            Second Brain
+            BrainDump
         </div>
         <div className="pt-6 pl-4">
             <Link to="/tweets" >

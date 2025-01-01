@@ -135,15 +135,28 @@ app.get('/api/v1/content', Auth, async (req, res) => {
     })
 })
 
-app.delete('/api/v1/content', Auth, async (req, res) => {
+app.delete('/api/v1/content/:contentId', Auth, async (req, res) => {
 
-    const contentId = req.body.contentId;
+    const { contentId } = req.params;
+    console.log(contentId);
+    const Id = new mongoose.Types.ObjectId(contentId);
+    console.log(Id);
 
-    await contentModel.deleteOne({
-        contentId,
+    if (!Id) {
+        res.status(400).json({ message: "Invalid content ID or user ID" });
+        return
+    }
+
+    const result = await contentModel.deleteOne({
+        _id: Id,
         //@ts-ignore
         userId: req.userId
     })
+
+    if (result.deletedCount === 0) {
+        res.status(404).json({ message: "Content not found" });
+        return
+    }
 
     res.json({
         message: "Content deleted"

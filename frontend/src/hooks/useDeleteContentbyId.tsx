@@ -4,13 +4,14 @@ import { BACKEND_URL } from "../config";
 export const useDeleteContentbyId = () => {
 
     async function deleteContent(contentId: any) {
-        await axios.delete(`${BACKEND_URL}/content`, {
+        console.log("delete")
+        await axios.delete(`${BACKEND_URL}/content/${contentId}`, {
             //@ts-ignore
-            contentId, // Include contentId in the request body
             headers: {
                 "Authorization": localStorage.getItem("token") || ""
             }
         });
+        console.log("delete1")
     }
 
     return { deleteContent }
