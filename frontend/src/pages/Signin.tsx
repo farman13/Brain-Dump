@@ -22,7 +22,6 @@ export const Signin = () => {
         })
         const token = response.data.token;
         localStorage.setItem("token", token);
-        alert("You are signed In!")
         navigate('/dashboard');
     }
     return <div className="h-screen w-screen bg-purple-50 flex justify-center items-center">

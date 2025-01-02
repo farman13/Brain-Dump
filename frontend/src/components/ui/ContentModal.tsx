@@ -52,17 +52,18 @@ export const ContentModal = ({ open, onClose }: ContentmodalProps) => {
                             <span className="bg-white opacity-100 p-4 rounded fixed">
                                 {/* close button*/}
                                 <div className="flex justify-end">
-                                    <div onClick={onClose} className="cursor-pointer">
+                                    <button
+                                        onClick={onClose}
+                                        className="text-gray-500 hover:text-gray-700 transition duration-200">
                                         <CrossIcon />
-                                    </div>
+                                    </button>
                                 </div>
                                 {/* Input fields for title and link */}
-                                <div>
+                                <div className="p-6">
                                     <Input placeholder={"Title"} reference={titleRef} />
                                     <Input placeholder={"Link"} reference={linkRef} />
                                 </div>
-                                <h1>Type</h1>
-                                <div className="flex gap-1 justify-center pb-2">
+                                <div className="flex gap-2 justify-center pb-4">
                                     <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"}
                                         size="sm" onClick={() => setType(ContentType.Youtube)} />
                                     <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary"}

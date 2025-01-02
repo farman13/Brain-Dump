@@ -20,8 +20,6 @@ export const Signup = () => {
             username,
             password
         })
-
-        alert("You are signed up!")
         navigate('/signin');
     }
     return <div className="h-screen w-screen bg-purple-50 flex justify-center items-center">
