@@ -181,6 +181,7 @@ app.post('/api/v1/brain/share', middleware_1.Auth, (req, res) => __awaiter(void 
 }));
 app.get('/api/v1/brain/:shareLink', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hash = req.params.shareLink;
+    console.log(hash);
     const link = yield db_1.linkModel.findOne({
         hash
     });

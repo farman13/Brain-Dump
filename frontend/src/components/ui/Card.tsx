@@ -9,7 +9,7 @@ interface cardProps {
     link: string
     type: "twitter" | "youtube",
     contentId: any
-    refresh: () => void
+    refresh?: () => void
 }
 
 export const Card = ({ title, link, type, contentId, refresh }: cardProps) => {
@@ -18,6 +18,7 @@ export const Card = ({ title, link, type, contentId, refresh }: cardProps) => {
 
     const DeleteContent = () => {
         deleteContent(contentId);
+        //@ts-ignore
         refresh();
     }
 

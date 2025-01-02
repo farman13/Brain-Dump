@@ -6,10 +6,12 @@ import { ShareIcon } from '../icons/ShareIcon'
 import { ContentModal } from '../components/ui/ContentModal'
 import { SideBar } from '../components/ui/SideBar'
 import { useContent } from '../hooks/useContent'
+import { ShareModal } from '../components/ui/ShareModal'
 
 function YouTube() {
 
     const [modalOpen, setmodalOpen] = useState(false);
+    const [shareModalOpen, setSharemodalOpen] = useState(false);
     const { contents, refresh } = useContent();
     //@ts-ignore
     const youtubeItems = contents.filter(item => item.type === "youtube");
@@ -22,9 +24,9 @@ function YouTube() {
             <SideBar />
             <div className='p-4 ml-72 min-h-screen bg-gray-100 border-2'>
                 <ContentModal open={modalOpen} onClose={() => setmodalOpen(false)} />
-
+                <ShareModal open={shareModalOpen} onClose={() => setSharemodalOpen(false)} />
                 <div className='flex justify-end gap-4'>
-                    <Button startIcon={<ShareIcon />} variant='secondary' size='sm' text='Share brain' onClick={() => { }} />
+                    <Button startIcon={<ShareIcon />} variant='secondary' size='sm' text='Share brain' onClick={() => { setSharemodalOpen(true) }} />
                     <Button startIcon={<PlusIcon />} variant='primary' size='sm' text='Add Content' onClick={() => { setmodalOpen(true) }} />
                 </div>
 

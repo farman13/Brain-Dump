@@ -29,7 +29,7 @@ export const ShareModal = ({ open, onClose }: ContentmodalProps) => {
                     Authorization: localStorage.getItem("token")
                 }
             });
-            setSharelink(`http://localhost:5173/brain/${response.data.hash}`);
+            setSharelink(`${window.location.origin}/brain/${response.data.hash}`);
         } catch (e) {
             console.log("Error sharing brain", e);
         }

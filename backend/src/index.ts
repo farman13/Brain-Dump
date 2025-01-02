@@ -206,7 +206,7 @@ app.post('/api/v1/brain/share', Auth, async (req, res) => {
 
 app.get('/api/v1/brain/:shareLink', async (req, res) => {
     const hash = req.params.shareLink;
-
+    console.log(hash);
     const link = await linkModel.findOne({
         hash
     })

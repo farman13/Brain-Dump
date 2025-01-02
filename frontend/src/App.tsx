@@ -4,6 +4,7 @@ import { Signin } from "./pages/Signin"
 import Dashboard from "./pages/Dashboard"
 import Twitter from "./pages/Twitter"
 import YouTube from "./pages/Youtube"
+import SharedBrain from "./pages/SharedBrain"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tweets" element={<Twitter />} />
           <Route path="/youtubeContent" element={<YouTube />} />
+          <Route path="/brain/:shareLink" element={<SharedBrain />} />
         </Routes>
       </BrowserRouter>
     </>
