@@ -14,6 +14,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send("hello from server")
+})
 app.post('/api/v1/signup', async (req, res) => {
     const reqBody = z.object({
         username: z.string().min(3).max(50),
