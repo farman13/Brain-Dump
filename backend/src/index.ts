@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { z } from "zod";
 import bycrpt from 'bcrypt';
-import { contentModel, linkModel, userModel } from "../db";
-import { JWT_SECRET } from "../config";
-import { Auth } from "../middleware";
-import { random } from "../utils";
+import { contentModel, linkModel, userModel } from "./db";
+import { JWT_SECRET } from "./config";
+import { Auth } from "./middleware";
+import { random } from "./utils";
 import cors from 'cors';
 
 const app = express();
