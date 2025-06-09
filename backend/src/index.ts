@@ -248,6 +248,6 @@ app.get('/api/v1/brain/:shareLink', async (req, res) => {
 const main = async () => {
     await mongoose.connect(process.env.MONGO_URI || "");
     console.log("mongoDB connected")
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
 }
 main();

@@ -18,10 +18,11 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const zod_1 = require("zod");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = require("./db");
-const config_1 = require("./config");
 const middleware_1 = require("./middleware");
 const utils_1 = require("./utils");
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -84,7 +85,7 @@ app.post('/api/v1/signin', (req, res) => __awaiter(void 0, void 0, void 0, funct
         //@ts-ignore
         const passwordMatch = bcrypt_1.default.compare(existingUser.password, password);
         if (existingUser && passwordMatch) {
-            const token = jsonwebtoken_1.default.sign({ id: existingUser._id }, config_1.JWT_SECRET);
+            const token = jsonwebtoken_1.default.sign({ id: existingUser._id }, process.env.JWT_SECRET || "");
             res.json({
                 token
             });
@@ -213,7 +214,7 @@ app.get('/api/v1/brain/:shareLink', (req, res) => __awaiter(void 0, void 0, void
     });
 }));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield mongoose_1.default.connect("mongodb+srv://farman32740:f%40rman32740@cluster0.wvi5a.mongodb.net/second-brain");
+    yield mongoose_1.default.connect(process.env.MONGO_URI || "");
     console.log("mongoDB connected");
     app.listen(3000);
 });
