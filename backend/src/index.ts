@@ -4,10 +4,11 @@ import jwt from 'jsonwebtoken';
 import { z } from "zod";
 import bycrpt from 'bcrypt';
 import { contentModel, linkModel, userModel } from "./db";
-import { JWT_SECRET } from "./config";
 import { Auth } from "./middleware";
 import { random } from "./utils";
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -84,7 +85,7 @@ app.post('/api/v1/signin', async (req, res) => {
         const passwordMatch = bycrpt.compare(existingUser.password, password)
 
         if (existingUser && passwordMatch) {
-            const token = jwt.sign({ id: existingUser._id }, JWT_SECRET);
+            const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET || "");
 
             res.json({
                 token
@@ -245,7 +246,7 @@ app.get('/api/v1/brain/:shareLink', async (req, res) => {
 })
 
 const main = async () => {
-    await mongoose.connect("mongodb+srv://farman32740:f%40rman32740@cluster0.wvi5a.mongodb.net/second-brain");
+    await mongoose.connect(process.env.MONGO_URI || "");
     console.log("mongoDB connected")
     app.listen(3000);
 }
