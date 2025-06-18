@@ -7,7 +7,7 @@ import { SidebarItem } from "./SidebarItem"
 export const SideBar = () => {
     return <div className="h-screen bg-white border-r w-72 fixed left-0 top-0 pl-6">
         <div className="flex text-2xl pt-6 items-center">
-            <Link to="/dashboard">
+            <Link to="/">
                 <div className="pr-2 text-purple-400">
                     <LogoIcon />
                 </div>
