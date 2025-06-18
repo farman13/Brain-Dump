@@ -50,6 +50,14 @@ You can also share your collection with others to promote collaborative learning
 
 ---
 
+## 📦 Installation
+
+ **Clone the repository**
+   ```bash
+   git clone https://github.com/farman13/Brain-Dump.git
+   cd Brain-Dump
+   ```
+
 ### Frontend setup
 
 ```bash
