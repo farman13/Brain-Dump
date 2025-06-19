@@ -4,6 +4,7 @@ import { Button } from "../components/ui/Button";
 import { Footer } from "../components/ui/Footer";
 import { LogoIcon } from "../icons/LogoIcon";
 import { SigninIcon } from "../icons/SigninIcon";
+import { LoginIcon } from "../icons/LoginIcon";
 
 
 const Landingpage = () => {
@@ -11,13 +12,18 @@ const Landingpage = () => {
 
     return (
         <>
-            <div className="flex text-2xl pt-6 ml-10 items-center">
-                <Link to="/">
-                    <div className="pr-2 text-purple-400">
-                        <LogoIcon />
-                    </div>
-                </Link>
-                BrainDump
+            <div className="flex justify-between">
+                <div className="flex text-2xl pt-6 ml-10 items-center">
+                    <Link to="/">
+                        <div className="pr-2 text-purple-400">
+                            <LogoIcon />
+                        </div>
+                    </Link>
+                    BrainDump
+                </div>
+                <div className="mt-6 mr-4">
+                    <Button startIcon={<LoginIcon />} variant="primary" text="Signin" size="sm" fullwidth={true} loading={false} onClick={() => navigate("/signin")} />
+                </div>
             </div>
             <div className="min-h-[90vh] bg-slate-50 flex flex-col items-center gap-3 md:gap-6">
                 <h1 className="text-2xl md:text-5xl font-extrabold text-slate-800 text-center mt-16 max-w-[90vw] md:max-w-[65vw] lg:max-w-[55vw]">
