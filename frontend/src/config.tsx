@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'https://brain-dump-ua9t.onrender.com/api/v1'
+export const BACKEND_URL = 'https://brain-dump-b.vercel.app/api/v1'
