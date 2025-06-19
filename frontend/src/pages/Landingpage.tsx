@@ -5,10 +5,22 @@ import { Footer } from "../components/ui/Footer";
 import { LogoIcon } from "../icons/LogoIcon";
 import { SigninIcon } from "../icons/SigninIcon";
 import { LoginIcon } from "../icons/LoginIcon";
+import { useEffect, useState } from "react";
+import { LogoutIcon } from "../icons/LogoutIcon";
 
 
 const Landingpage = () => {
     const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const isLoggedIn = () => {
+        const token = localStorage.getItem('token');
+        if (token) setLoggedIn(true);
+    }
+
+    useEffect(() => {
+        isLoggedIn();
+    }, [])
 
     return (
         <>
@@ -22,7 +34,7 @@ const Landingpage = () => {
                     BrainDump
                 </div>
                 <div className="mt-6 mr-4">
-                    <Button startIcon={<LoginIcon />} variant="primary" text="Signin" size="sm" fullwidth={true} loading={false} onClick={() => navigate("/signin")} />
+                    <Button startIcon={loggedIn ? <LogoutIcon /> : <LoginIcon />} variant="primary" text={loggedIn ? "Logout" : "Signin"} size="sm" fullwidth={true} loading={false} onClick={loggedIn ? () => { localStorage.removeItem("token"); setLoggedIn(false) } : () => navigate("/signin")} />
                 </div>
             </div>
             <div className="min-h-[90vh] bg-slate-50 flex flex-col items-center gap-3 md:gap-6">
@@ -34,7 +46,7 @@ const Landingpage = () => {
                     notes. Access them anytime, and easily share with friends via link
                 </p>
                 <div className="flex gap-4">
-                    <Button startIcon={<SigninIcon />} variant="primary" text="Get Started" size="sm" fullwidth={true} loading={false} onClick={() => navigate("/signin")} />
+                    <Button startIcon={<SigninIcon />} variant="primary" text={loggedIn ? "Dashboard" : "Get Started"} size="sm" fullwidth={true} loading={false} onClick={loggedIn ? () => navigate("/dashboard") : () => navigate("/signin")} />
                 </div>
                 <img
                     src={brainlyPreview}

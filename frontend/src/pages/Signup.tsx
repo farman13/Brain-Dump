@@ -40,7 +40,7 @@ export const Signup = () => {
                 <Input placeholder="A12@.." reference={passwordRef} />
             </div>
             <div className="flex justify-center pt-6">
-                <Button variant="primary" text={loading ? "Creating..." : "Signup"} size="sm" fullwidth={true} loading={false} onClick={signup} />
+                <Button variant="primary" text={loading ? "Creating..." : "Signup"} size="sm" fullwidth={true} loading={loading} onClick={signup} />
             </div>
             <div className="pt-4 text-lg">
                 Existing user ?
