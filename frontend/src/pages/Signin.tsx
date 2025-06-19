@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../components/ui/Button"
 import { Input } from "../components/ui/Input"
 import { BACKEND_URL } from "../config";
@@ -7,12 +7,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Signin = () => {
 
+
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const usernameRef = useRef<HTMLInputElement>();
     const passwordRef = useRef<HTMLInputElement>();
 
     async function signin() {
 
+        setLoading(true);
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
 
@@ -22,6 +25,7 @@ export const Signin = () => {
         })
         const token = response.data.token;
         localStorage.setItem("token", token);
+        setLoading(false);
         navigate('/dashboard');
     }
     return <div className="h-screen w-screen bg-purple-50 flex justify-center items-center">
@@ -39,7 +43,7 @@ export const Signin = () => {
                 <Input placeholder="A12@.." reference={passwordRef} />
             </div>
             <div className="flex justify-center pt-6">
-                <Button variant="primary" text="Signin" size="sm" fullwidth={true} loading={false} onClick={signin} />
+                <Button variant="primary" text={loading ? "Signing..." : "Signin"} size="sm" fullwidth={true} loading={false} onClick={signin} />
             </div>
             <div className="pt-4 text-lg">
                 New user ?

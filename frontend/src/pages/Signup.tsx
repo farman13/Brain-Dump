@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Button } from "../components/ui/Button"
 import { Input } from "../components/ui/Input"
 import { BACKEND_URL } from "../config";
@@ -7,12 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
 
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const usernameRef = useRef<HTMLInputElement>();
     const passwordRef = useRef<HTMLInputElement>();
 
     async function signup() {
 
+        setLoading(true);
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
 
@@ -20,6 +22,7 @@ export const Signup = () => {
             username,
             password
         })
+        setLoading(false);
         navigate('/signin');
     }
     return <div className="h-screen w-screen bg-purple-50 flex justify-center items-center">
@@ -37,7 +40,7 @@ export const Signup = () => {
                 <Input placeholder="A12@.." reference={passwordRef} />
             </div>
             <div className="flex justify-center pt-6">
-                <Button variant="primary" text="Signup" size="sm" fullwidth={true} loading={false} onClick={signup} />
+                <Button variant="primary" text={loading ? "Creating..." : "Signup"} size="sm" fullwidth={true} loading={false} onClick={signup} />
             </div>
             <div className="pt-4 text-lg">
                 Existing user ?
