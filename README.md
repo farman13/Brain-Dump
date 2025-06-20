@@ -45,6 +45,12 @@ You can also share your collection with others to promote collaborative learning
 
 ---
 
+### Login credentials 
+
+username : farman123
+password : F@rman1234
+
+
 ## 📦 How to Run the Project
 
 ### Prerequisites
@@ -84,4 +90,5 @@ PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 ```
+
 
