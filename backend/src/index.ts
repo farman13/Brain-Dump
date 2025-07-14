@@ -234,7 +234,7 @@ app.get('/api/v1/brain/:shareLink', async (req, res) => {
 
     if (!user) {
         res.status(411).json({
-            message: "user not found , error should ideally not happen"
+            message: "user not found , error should ideally not happen."
         })
         return;
     }
